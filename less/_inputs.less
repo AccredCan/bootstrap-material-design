@@ -1,8 +1,5 @@
-fieldset[disabled] .form-control, .form-control-wrapper .form-control, .form-control {
+fieldset[disabled] .form-control, .form-control {
   &, &:focus, &.focus {
-    &:not(textarea) {
-      height: 28px;
-    }
     padding: 0;
     float: none;
     border: 0;
@@ -12,6 +9,12 @@ fieldset[disabled] .form-control, .form-control-wrapper .form-control, .form-con
       border-style: dashed;
       border-bottom: 1px solid #757575;
     }
+  }
+}
+
+fieldset[disabled] .form-control, .form-control {
+  &:textarea {
+    height: 40px;
   }
 }
 
@@ -29,21 +32,39 @@ select[multiple].form-control {
   background-position: center bottom, center calc(~"100% - 1px");
   background-color: transparent;
   background-color: rgba(0,0,0,0);
+  transition: background 0s ease-out;
+  &::-webkit-input-placeholder {
+    color: @input-placeholder-color;
+  }
+  &::-moz-placeholder {
+    color: @input-placeholder-color; 
+  }
+  &:-ms-input-placeholder {  
+    color: @input-placeholder-color;
+  }
 }
 .form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
   background-color: transparent;
   background-color: rgba(0,0,0,0);
 }
-fieldset[disabled] .form-control:disabled, .form-control-wrapper .form-control:disabled, .form-control:disabled, fieldset[disabled] .form-control:focus:disabled, .form-control-wrapper .form-control:focus:disabled, .form-control:focus:disabled, fieldset[disabled] .form-control.focus:disabled, .form-control-wrapper .form-control.focus:disabled, .form-control.focus:disabled {
-  border: 0;
+fieldset[disabled] .form-control:disabled, 
+.form-control-wrapper .form-control:disabled, 
+.form-control:disabled, 
+fieldset[disabled] .form-control:focus:disabled, 
+.form-control-wrapper .form-control:focus:disabled, 
+.form-control:focus:disabled, 
+fieldset[disabled] .form-control.focus:disabled, 
+.form-control-wrapper .form-control.focus:disabled, 
+.form-control.focus:disabled {
+  border: 0; // Ugly override of Bootstrap border
 }
 
 .form-control:focus, .form-control.focus {
   outline: none;
   background-image: linear-gradient(@primary, @primary), linear-gradient(@input-underline-color, @input-underline-color);
-  animation: input-highlight 0.5s forwards;
+  background-size: 100% 2px, 100% 1px;
   box-shadow: none;
-  background-size: 0 2px, 100% 1px;
+  transition-duration: 0.3s;
 }
 
 
@@ -51,21 +72,44 @@ fieldset[disabled] .form-control:disabled, .form-control-wrapper .form-control:d
   position: relative;
 
   .floating-label {
-    color: #7E7E7E;
-    font-size: 14px;
+    color: @input-placeholder-color;
     position: absolute;
     pointer-events: none;
     left: 0px;
     top: 5px;
-    transition: 0.2s ease all;
-    opacity: 0;
+    transition: 0.3s ease all;
+  }
+
+  // Input sizes
+  .floating-label { // base
+    font-size: @font-size-base;
   }
   .form-control:focus ~ .floating-label,
   .form-control:not(.empty) ~ .floating-label {
-    top: -10px;
-    font-size: 10px;
-    opacity: 1;
+    top: @floating-label-size-ratio * -@font-size-base;
+    font-size: @floating-label-size-ratio * @font-size-base;
   }
+
+  .input-sm + .floating-label { // small
+    font-size: @font-size-small;
+    top: 7px;
+  }
+  .form-control.input-sm:focus ~ .floating-label,
+  .form-control.input-sm:not(.empty) ~.floating-label {
+    top: @floating-label-size-ratio * -@font-size-small;
+    font-size: @floating-label-size-ratio * @font-size-small;
+  }
+
+  .input-lg + .floating-label {
+    font-size: @font-size-large;
+    top: 10px;
+  }
+  .form-control.input-lg:focus ~ .floating-label,
+  .form-control.input-lg:not(.empty) ~ .floating-label {
+    top: @floating-label-size-ratio * -@font-size-large;
+    font-size: @floating-label-size-ratio * @font-size-large;
+  }
+
   .form-control:focus ~ .floating-label {
     color: @primary;
   }
@@ -77,9 +121,6 @@ fieldset[disabled] .form-control:disabled, .form-control-wrapper .form-control:d
   }
   .form-control:invalid {
     background-image: linear-gradient(@input-danger, @input-danger), linear-gradient(@input-underline-color, @input-underline-color);
-  }
-  .form-control.empty ~ .floating-label  {
-    opacity: 1;
   }
   textarea { resize: none; }
   textarea ~ .form-control-highlight {
@@ -192,16 +233,6 @@ select.form-control {
   &:focus, &.focus {
     box-shadow: none;
     border-color: #757575;
-  }
-}
-
-@keyframes input-highlight {
-  0% {
-    background-size: 0 2px, 100% 1px;
-  }
-
-  100% {
-    background-size: 100% 2px, 100% 1px;
   }
 }
 
