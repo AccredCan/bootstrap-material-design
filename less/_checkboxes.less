@@ -24,15 +24,15 @@
   .checkbox-material {
     vertical-align: middle;
     position: relative;
-    top: 3px;
+    top: unit((@checkbox-size * .15) + ((@checkbox-size - 20) * (1 / 3) ), px); // probably a better way with line height
     &:before {
       display: block;
       position: absolute;
       left: 0;
       content: "";
       background-color: rgba(0,0,0,.84);
-      height: @checkbox-size;
-      width: @checkbox-size;
+      height: unit(@checkbox-size, px);
+      width: unit(@checkbox-size, px);
       border-radius: 100%;
       z-index: 1;
       opacity: 0;
@@ -43,10 +43,10 @@
     .check {
       position: relative;
       display: inline-block;
-      width: @checkbox-size;
-      height: @checkbox-size;
-      border: 2px solid;
-      border-radius: 2px;
+      width: unit(@checkbox-size, px);
+      height: unit(@checkbox-size, px);
+      border: unit(@checkbox-size * .1, px) solid;
+      border-radius: unit(@checkbox-size * .1, px);
       overflow: hidden;
       z-index: 1;
     }
@@ -55,8 +55,8 @@
       content: "";
       transform: rotate(45deg);
       display: block;
-      margin-top: -4px;
-      margin-left: 6px;
+      margin-top: unit(-@checkbox-size * .2, px);
+      margin-left: unit(@checkbox-size * .3, px);
       width: 0;
       height: 0;
       box-shadow:
@@ -76,12 +76,12 @@
   }
   input[type=checkbox]:checked + .checkbox-material .check:before {
     box-shadow:
-      0 0 0 10px,
-      10px -10px 0 10px,
-      32px 0px 0 20px,
-      0px 32px 0 20px,
-      -5px 5px 0 10px,
-      20px -12px 0 11px;
+      0 0 0 unit((@checkbox-size * .5), px),
+      unit((@checkbox-size * .5), px) unit((-@checkbox-size * .5), px) 0 unit((@checkbox-size * .5), px),
+      unit((@checkbox-size * 1.6), px) 0px 0 unit(@checkbox-size, px),
+      0px unit((@checkbox-size * 1.6), px) 0 unit(@checkbox-size, px),
+      unit((-@checkbox-size * .25), px) unit((@checkbox-size * .25), px) 0 unit((@checkbox-size * .5), px),
+      unit(@checkbox-size, px) unit((-@checkbox-size * .6), px) 0 unit((@checkbox-size * .55), px);
     animation: checkbox-on @checkbox-animation-check forwards;
   }
 
@@ -119,75 +119,75 @@
 @keyframes checkbox-on {
   0% {
     box-shadow:
-      0 0 0 10px,
-      10px -10px 0 10px,
-      32px 0px 0 20px,
-      0px 32px 0 20px,
-      -5px 5px 0 10px,
-      15px 2px 0 11px;
+      0 0 0 unit((@checkbox-size * .5), px),
+      unit((@checkbox-size * .5), px) unit((-@checkbox-size * .5), px) 0 unit((@checkbox-size * .5), px),
+      unit((@checkbox-size * 1.6), px) 0px 0 unit((@checkbox-size), px),
+      0px unit((@checkbox-size * 1.6), px) 0 unit((@checkbox-size), px),
+      unit((-@checkbox-size * .25), px) unit((@checkbox-size * .25), px) 0 unit((@checkbox-size * .5), px),
+      unit((@checkbox-size * .75), px) unit((@checkbox-size * .1), px) 0 unit((@checkbox-size * .55), px);
   }
   50% {
     box-shadow:
-      0 0 0 10px,
-      10px -10px 0 10px,
-      32px 0px 0 20px,
-      0px 32px 0 20px,
-      -5px 5px 0 10px,
-      20px 2px 0 11px;
+      0 0 0 unit((@checkbox-size * .5), px),
+      unit((@checkbox-size * .5), px) unit((-@checkbox-size * .5), px) 0 unit((@checkbox-size * .5), px),
+      unit((@checkbox-size * 1.6), px) 0px 0 unit((@checkbox-size), px),
+      0px unit((@checkbox-size * 1.6), px) 0 unit((@checkbox-size), px),
+      unit((-@checkbox-size * .25), px) unit((@checkbox-size * .25), px) 0 unit((@checkbox-size * .5), px),
+      unit((@checkbox-size), px) unit((@checkbox-size * .1), px) 0 unit((@checkbox-size * .55), px);
   }
   100% {
     box-shadow:
-      0 0 0 10px,
-      10px -10px 0 10px,
-      32px 0px 0 20px,
-      0px 32px 0 20px,
-      -5px 5px 0 10px,
-      20px -12px 0 11px;
+      0 0 0 unit((@checkbox-size * .5), px),
+      unit((@checkbox-size * .5), px) unit((-@checkbox-size * .5), px) 0 unit((@checkbox-size *.5), px),
+      unit((@checkbox-size * 1.6), px) 0px 0 unit((@checkbox-size), px),
+      0px unit((@checkbox-size * 1.6), px) 0 unit((@checkbox-size), px),
+      unit((-@checkbox-size * .25), px) unit((@checkbox-size * .25), px) 0 unit((@checkbox-size * .5), px),
+      unit((@checkbox-size), px) unit((-@checkbox-size * .6), px) 0 unit((@checkbox-size * .55), px);
   }
 }
 @keyframes checkbox-off {
   0% {
     box-shadow:
-      0 0 0 10px,
-      10px -10px 0 10px,
-      32px 0px 0 20px,
-      0px 32px 0 20px,
-      -5px 5px 0 10px,
-      20px -12px 0 11px,
+      0 0 0 unit((@checkbox-size * .5), px),
+      unit((@checkbox-size * .5), px) unit((-@checkbox-size * .5), px) 0 unit((@checkbox-size * .5), px),
+      unit((@checkbox-size * 1.6), px) 0px 0 unit((@checkbox-size), px),
+      0px unit((@checkbox-size * 1.6), px) 0 unit((@checkbox-size), px),
+      unit((-@checkbox-size * .25), px) unit((@checkbox-size * .25), px) 0 unit((@checkbox-size * .5), px),
+      unit((@checkbox-size), px) unit((-@checkbox-size * .6), px) 0 unit((@checkbox-size * .55), px),
       0 0 0 0 inset;
   }
 
   25% {
     box-shadow:
-      0 0 0 10px,
-      10px -10px 0 10px,
-      32px 0px 0 20px,
-      0px 32px 0 20px,
-      -5px 5px 0 10px,
-      20px -12px 0 11px,
+      0 0 0 unit((@checkbox-size * .5), px),
+      unit((@checkbox-size * .5), px) unit((-@checkbox-size * .5), px) 0 unit((@checkbox-size * .5), px),
+      unit((@checkbox-size * 1.6), px) 0px 0 unit((@checkbox-size), px),
+      0px unit((@checkbox-size * 1.6), px) 0 unit((@checkbox-size), px),
+      unit((-@checkbox-size * .25), px) unit((@checkbox-size * .25), px) 0 unit((@checkbox-size * .5), px),
+      unit((@checkbox-size), px) unit((-@checkbox-size * .6), px) 0 unit((@checkbox-size * .55), px),
       0 0 0 0 inset;
   }
   50% {
     transform: rotate(45deg);
-    margin-top: -4px;
-    margin-left: 6px;
+    margin-top: unit(-@checkbox-size * .2, px);
+    margin-left: unit(@checkbox-size * .3, px);
     width: 0px;
     height: 0px;
     box-shadow:
-      0 0 0 10px,
-      10px -10px 0 10px,
-      32px 0px 0 20px,
-      0px 32px 0 20px,
-      -5px 5px 0 10px,
-      15px 2px 0 11px,
+      0 0 0 unit((@checkbox-size * .5), px),
+      unit((@checkbox-size * .5), px) unit((-@checkbox-size * .5), px) 0 unit((@checkbox-size * .5), px),
+      unit((@checkbox-size * 1.6), px) 0px 0 unit((@checkbox-size), px),
+      0px unit((@checkbox-size * 1.6), px) 0 unit((@checkbox-size), px),
+      unit((-@checkbox-size * .25), px) unit((@checkbox-size * .25), px) 0 unit((@checkbox-size * .5), px),
+      unit((@checkbox-size * .75), px) unit((@checkbox-size * .1), px) 0 unit((@checkbox-size * .55), px),
       0 0 0 0 inset;
   }
   51% {
     transform: rotate(0deg);
-    margin-top: -2px;
-    margin-left: -2px;
-    width: 20px;
-    height: 20px;
+    margin-top: unit(-@checkbox-size * .1, px);
+    margin-left: unit(-@checkbox-size * .1, px);
+    width: unit((@checkbox-size), px);
+    height: unit((@checkbox-size), px);
     box-shadow:
       0 0 0 0,
       0 0 0 0,
@@ -195,14 +195,14 @@
       0 0 0 0,
       0 0 0 0,
       0 0 0 0,
-      0px 0px 0 10px inset;
+      0px 0px 0 unit((@checkbox-size * .5), px) inset;
   }
   100% {
     transform: rotate(0deg);
-    margin-top: -2px;
-    margin-left: -2px;
-    width: 20px;
-    height: 20px;
+    margin-top: unit(-@checkbox-size * .1, px);
+    margin-left: unit(-@checkbox-size * .1, px);
+    width: unit((@checkbox-size), px);
+    height: unit((@checkbox-size), px);
     box-shadow:
       0 0 0 0,
       0 0 0 0,
@@ -233,5 +233,140 @@
   }
   100% {
     opacity: 0;
+  }
+}
+
+
+// LARGE CHECKBOX
+.checkbox.checkbox-lg {
+
+  .checkbox-material {
+    top: unit((@checkbox-size-lg * .15) + ((@checkbox-size-lg - 20) * (1 / 3) ), px); // probably a better way with line height
+    &:before {
+      height: unit(@checkbox-size-lg, px);
+      width: unit(@checkbox-size-lg, px);
+    }
+
+    .check {
+      width: unit(@checkbox-size-lg, px);
+      height: unit(@checkbox-size-lg, px);
+      border: unit(@checkbox-size-lg * .1, px) solid;
+      border-radius: unit(@checkbox-size-lg * .1, px);
+    }
+    .check:before {
+      margin-top: unit(-@checkbox-size-lg * .2, px);
+      margin-left: unit(@checkbox-size-lg * .3, px);
+      animation: checkbox-off-lg @checkbox-animation-check forwards;
+    }
+  }
+  
+  input[type=checkbox]:checked + .checkbox-material .check:before {
+    box-shadow:
+      0 0 0 unit((@checkbox-size-lg * .5), px),
+      unit((@checkbox-size-lg * .5), px) unit((-@checkbox-size-lg * .5), px) 0 unit((@checkbox-size-lg * .5), px),
+      unit((@checkbox-size-lg * 1.6), px) 0px 0 unit(@checkbox-size-lg, px),
+      0px unit((@checkbox-size-lg * 1.6), px) 0 unit(@checkbox-size-lg, px),
+      unit((-@checkbox-size-lg * .25), px) unit((@checkbox-size-lg * .25), px) 0 unit((@checkbox-size-lg * .5), px),
+      unit(@checkbox-size-lg, px) unit((-@checkbox-size-lg * .6), px) 0 unit((@checkbox-size-lg * .55), px);
+    animation: checkbox-on-lg @checkbox-animation-check forwards;
+  }
+}
+
+
+@keyframes checkbox-on-lg {
+  0% {
+    box-shadow:
+      0 0 0 unit((@checkbox-size-lg * .5), px),
+      unit((@checkbox-size-lg * .5), px) unit((-@checkbox-size-lg * .5), px) 0 unit((@checkbox-size-lg * .5), px),
+      unit((@checkbox-size-lg * 1.6), px) 0px 0 unit((@checkbox-size-lg), px),
+      0px unit((@checkbox-size-lg * 1.6), px) 0 unit((@checkbox-size-lg), px),
+      unit((-@checkbox-size-lg * .25), px) unit((@checkbox-size-lg * .25), px) 0 unit((@checkbox-size-lg * .5), px),
+      unit((@checkbox-size-lg * .75), px) unit((@checkbox-size-lg * .1), px) 0 unit((@checkbox-size-lg * .55), px);
+  }
+  50% {
+    box-shadow:
+      0 0 0 unit((@checkbox-size-lg * .5), px),
+      unit((@checkbox-size-lg * .5), px) unit((-@checkbox-size-lg * .5), px) 0 unit((@checkbox-size-lg * .5), px),
+      unit((@checkbox-size-lg * 1.6), px) 0px 0 unit((@checkbox-size-lg), px),
+      0px unit((@checkbox-size-lg * 1.6), px) 0 unit((@checkbox-size-lg), px),
+      unit((-@checkbox-size-lg * .25), px) unit((@checkbox-size-lg * .25), px) 0 unit((@checkbox-size-lg * .5), px),
+      unit((@checkbox-size-lg), px) unit((@checkbox-size-lg * .1), px) 0 unit((@checkbox-size-lg * .55), px);
+  }
+  100% {
+    box-shadow:
+      0 0 0 unit((@checkbox-size-lg * .5), px),
+      unit((@checkbox-size-lg * .5), px) unit((-@checkbox-size-lg * .5), px) 0 unit((@checkbox-size-lg *.5), px),
+      unit((@checkbox-size-lg * 1.6), px) 0px 0 unit((@checkbox-size-lg), px),
+      0px unit((@checkbox-size-lg * 1.6), px) 0 unit((@checkbox-size-lg), px),
+      unit((-@checkbox-size-lg * .25), px) unit((@checkbox-size-lg * .25), px) 0 unit((@checkbox-size-lg * .5), px),
+      unit((@checkbox-size-lg), px) unit((-@checkbox-size-lg * .6), px) 0 unit((@checkbox-size-lg * .55), px);
+  }
+}
+@keyframes checkbox-off-lg {
+  0% {
+    box-shadow:
+      0 0 0 unit((@checkbox-size-lg * .5), px),
+      unit((@checkbox-size-lg * .5), px) unit((-@checkbox-size-lg * .5), px) 0 unit((@checkbox-size-lg * .5), px),
+      unit((@checkbox-size-lg * 1.6), px) 0px 0 unit((@checkbox-size-lg), px),
+      0px unit((@checkbox-size-lg * 1.6), px) 0 unit((@checkbox-size-lg), px),
+      unit((-@checkbox-size-lg * .25), px) unit((@checkbox-size-lg * .25), px) 0 unit((@checkbox-size-lg * .5), px),
+      unit((@checkbox-size-lg), px) unit((-@checkbox-size-lg * .6), px) 0 unit((@checkbox-size-lg * .55), px),
+      0 0 0 0 inset;
+  }
+
+  25% {
+    box-shadow:
+      0 0 0 unit((@checkbox-size-lg * .5), px),
+      unit((@checkbox-size-lg * .5), px) unit((-@checkbox-size-lg * .5), px) 0 unit((@checkbox-size-lg * .5), px),
+      unit((@checkbox-size-lg * 1.6), px) 0px 0 unit((@checkbox-size-lg), px),
+      0px unit((@checkbox-size-lg * 1.6), px) 0 unit((@checkbox-size-lg), px),
+      unit((-@checkbox-size-lg * .25), px) unit((@checkbox-size-lg * .25), px) 0 unit((@checkbox-size-lg * .5), px),
+      unit((@checkbox-size-lg), px) unit((-@checkbox-size-lg * .6), px) 0 unit((@checkbox-size-lg * .55), px),
+      0 0 0 0 inset;
+  }
+  50% {
+    transform: rotate(45deg);
+    margin-top: unit(-@checkbox-size-lg * .2, px);
+    margin-left: unit(@checkbox-size-lg * .3, px);
+    width: 0px;
+    height: 0px;
+    box-shadow:
+      0 0 0 unit((@checkbox-size-lg * .5), px),
+      unit((@checkbox-size-lg * .5), px) unit((-@checkbox-size-lg * .5), px) 0 unit((@checkbox-size-lg * .5), px),
+      unit((@checkbox-size-lg * 1.6), px) 0px 0 unit((@checkbox-size-lg), px),
+      0px unit((@checkbox-size-lg * 1.6), px) 0 unit((@checkbox-size-lg), px),
+      unit((-@checkbox-size-lg * .25), px) unit((@checkbox-size-lg * .25), px) 0 unit((@checkbox-size-lg * .5), px),
+      unit((@checkbox-size-lg * .75), px) unit((@checkbox-size-lg * .1), px) 0 unit((@checkbox-size-lg * .55), px),
+      0 0 0 0 inset;
+  }
+  51% {
+    transform: rotate(0deg);
+    margin-top: unit(-@checkbox-size-lg * .1, px);
+    margin-left: unit(-@checkbox-size-lg * .1, px);
+    width: unit((@checkbox-size-lg), px);
+    height: unit((@checkbox-size-lg), px);
+    box-shadow:
+      0 0 0 0,
+      0 0 0 0,
+      0 0 0 0,
+      0 0 0 0,
+      0 0 0 0,
+      0 0 0 0,
+      0px 0px 0 unit((@checkbox-size-lg * .5), px) inset;
+  }
+  100% {
+    transform: rotate(0deg);
+    margin-top: unit(-@checkbox-size-lg * .1, px);
+    margin-left: unit(-@checkbox-size-lg * .1, px);
+    width: unit((@checkbox-size-lg), px);
+    height: unit((@checkbox-size-lg), px);
+    box-shadow:
+      0 0 0 0,
+      0 0 0 0,
+      0 0 0 0,
+      0 0 0 0,
+      0 0 0 0,
+      0 0 0 0,
+      0px 0px 0 0px inset;
   }
 }
